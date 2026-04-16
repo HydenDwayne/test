@@ -1,0 +1,1610 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url('Poppins-Bold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #e9edf3;
+}
+
+/* =====================================================
+   Global background used by the login and application pages
+   ===================================================== */
+.bg:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.bg::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(38, 95, 181, 0.3);
+    z-index: -1;
+}
+
+/* =====================================================
+   Login page: adminIndex.html / adminLogin.php
+   ===================================================== */
+.loginModal {
+    background-color: #004aad;
+    border-radius: 16px;
+    width: 400px;
+    min-height: 500px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.step {
+    display: none;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.step.active {
+    display: flex;
+}
+
+.nextBtn,
+.prevBtn {
+    margin-top: 10px;
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffbd59;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#gwaLabel {
+    display: none;
+    color: red;
+    font-size: 15px;
+}
+
+#idDigits,
+#idExists,
+#middleInitialError,
+#MInotLetters,
+#FNnotLetters,
+#LNnotLetters {
+    display: none;
+    font-size: 15px;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+#logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.loginInput {
+    width: 300px;
+    margin: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+}
+
+.loginModal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.submitBtn {
+    margin-top: 10px;
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #ffbd59;
+    font-weight: bolder;
+    font-size: 15px;
+    color: rgb(17, 27, 168);
+}
+
+form a {
+    color: white;
+    margin-top: 10px;
+}
+
+form input {
+    font-size: 15px;
+}
+
+/* =====================================================
+   Shared top navigation: adminDashboard.php, adminManageApplications.php
+   ===================================================== */
+#nav-horizontal {
+    background-color: #05408f;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 80px;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 10px;
+    border-color: #315aed;
+    display: flex;
+}
+
+.nav-logout-btn {
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #8f5405;
+    color: #ffffff;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-logout-btn:hover {
+    background-color: #a86409;
+    transform: translateY(-1px);
+}
+
+h1 {
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+#nav-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px;
+}
+
+#nav-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#nav-horizontal h2 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: white;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+/* =====================================================
+   Landing / application form layout
+   Used by the student-facing pages that share this stylesheet
+   ===================================================== */
+.containerCentered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 400px;
+    padding-bottom: 0px;
+}
+
+#middle {
+    background-color: #ebebeb;
+    width: 1000px;
+    height: 280px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    border-radius: 15px;
+    border-color: rgb(235, 232, 232);
+    border-width: 1px;
+    border-style: solid;
+    color: #201e1e;
+}
+
+#middle h2 {
+    text-align: start;
+    color: #201e1e;
+}
+
+#middle h3 {
+    margin: 0px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+#middle h4 {
+    margin: 0px;
+}
+
+#innerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#status-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* changed: removed bgcolor tag */
+#circle-status {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    max-width: 15px;
+    max-height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+#innerContainer div {
+    width: 300px;
+}
+
+#nav-vertical {
+    display: block;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    background-color: #004aad;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-vertical ul {
+    padding: 0 10px;
+    list-style-type: none;
+    margin-top: 100px;
+}
+
+#nav-vertical ul li {
+    margin: 6px 8px;
+    border-radius: 12px;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#nav-vertical ul li:hover {
+    background-color: #0f5fcf;
+    transform: translateX(2px);
+    box-shadow: inset 0 0 0 1px rgba(196, 219, 255, 0.35);
+    cursor: pointer;
+}
+
+#nav-vertical ul li.nav-active {
+    background: linear-gradient(135deg, #2f74dd 0%, #1453b5 100%);
+    box-shadow: 0 8px 16px rgba(9, 42, 102, 0.35);
+}
+
+#nav-vertical ul li.nav-active:hover {
+    background: linear-gradient(135deg, #3b82ee 0%, #1b60c7 100%);
+}
+
+#nav-vertical ul li a {
+    display: block;
+    color: #dbe9ff;
+    text-decoration: none;
+    font-size: larger;
+    text-shadow: none;
+    padding: 11px 18px;
+    border-radius: 12px;
+}
+
+#nav-vertical ul li.nav-active a {
+    color: #ffffff;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+.content {
+
+    width: calc(100% - 490px);
+    height: calc(100vh - 190px);
+    margin-left: 290px;
+    padding: 0 100px 0 100px;
+    display: flex;
+    gap: 40px;
+    margin-top: 90px;
+    padding-bottom: 100px;
+    background-color: #e9edf3;
+}
+
+#left-analytics {
+    width: 1000px;
+    height: 100%;
+}
+
+/* =====================================================
+   Dashboard widgets and analytics area
+   Used by adminDashboard.php
+   ===================================================== */
+#right-analytics {
+    width: 600px;
+    height: 100%;
+}
+
+#welcome {
+    width: calc(100% - 20px);
+    height: 70px;
+    color: #201e1e;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+#welcome h1,
+h3 {
+    padding: 0;
+    margin: 0;
+}
+
+#numbers {
+    width: calc(100% - 20px);
+    height: 150px;
+    color: #201e1e;
+    padding: 10px;
+    margin-top: 30px;
+    display: flex;
+}
+
+/*  */
+.widgets {
+    width: calc((100% / 3) - 20px);
+    height: calc(100% - 60px);
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    /* New - Jury */
+    transition: transform 0.2s ease;
+}
+
+/* New - Jury */
+.widgets:hover {
+    transform: translateY(-5px);
+}
+
+.widgets h3 {
+    text-align: center;
+}
+
+.widgets h3,
+h1 {
+    padding: 0;
+    margin: 0;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+#trends-chart {
+
+    width: calc(100% - 40px);
+    height: 400px;
+    color: #201e1e;
+    padding: 20px;
+    margin-top: 10px;
+    display: flex;
+}
+
+#trends-chart h2 {
+    color: #201e1e;
+}
+
+#trend-wrapper {
+    width: calc(100% - 5px);
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+#quick-actions {
+
+    width: calc(100% - 20px);
+    height: 200px;
+    color: #201e1e;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+#btn-container {
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+
+#pie-chart {
+    width: calc(100% - 20px);
+    height: 500px;
+    color: #201e1e;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+}
+
+#pie-chart h2 {
+    text-align: center;
+    color: #201e1e;
+}
+
+#pie-wrapper {
+    width: 100%;
+    height: calc(100% - 15px);
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+/* =====================================================
+   Applications table and search area
+   Used by adminManageApplications.php
+   ===================================================== */
+#content-header {
+    width: 100%;
+    height: 150px;
+    margin-top: 90px;
+}
+
+#content-header h1 {
+    color: #201e1e;
+}
+
+#search-wrapper {
+    margin-top: 20px;
+    width: 50%;
+    height: calc(100% - 110px);
+    padding: 20px;
+}
+
+#searchbar {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: calc(100% - 200px);
+    height: 40px;
+    border: 1px solid #d4d9e2;
+    padding-left: 12px;
+    color: #1f1f1f;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+#searchbar::placeholder {
+    color: #8691a3;
+}
+
+#addBtn-wrapper {
+    margin-top: 20px;
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+#bottomHeader-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#btn-container h2 {
+    margin: 0;
+    text-align: center;
+    color: #201e1e;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+#btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#btn-wrapper button {
+    color: #ebebeb;
+    border: none;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    width: calc(100% - 40px);
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#addApplicationBtn {
+    border: none;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+    background-color: #6e85b7;
+    color: white;
+}
+
+/* New - Jury */
+#addApplicationBtn:hover {
+    background-color: #3378c2;
+    cursor: pointer;
+}
+
+/* New - Jury */
+#manageApplicationBtn {
+    font-size: 16px;
+
+    background-color: #6e85b7;
+    color: white;
+}
+
+/* New - Jury */
+#manageApplicationBtn:hover {
+    background-color: #3378c2;
+    cursor: pointer;
+}
+
+/* New - Jury */
+#viewApplicationBtn {
+    border: none;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    padding: 10px;
+    width: 150px;
+    border-radius: 10px;
+    font-size: 14px;
+
+    background-color: #907fa4;
+    color: white;
+}
+
+/* New - Jury */
+#viewApplicationBtn:hover {
+    background-color: #995fa6;
+    color: white;
+    cursor: pointer;
+}
+
+#table {
+
+    margin-top: 20px;
+    width: calc(100% - 20px);
+    height: calc(100% - 50px);
+    padding: 10px;
+}
+
+#content-wrapper {
+    width: 100vw;
+    height: calc(100% - 190px);
+}
+
+#data-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    border-radius: 10px;
+    padding: 0px 20px 20px 20px;
+}
+
+#data-container table {
+    width: 100%;
+    text-align: center;
+}
+
+#data-container th {
+    color: #50607a;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+    z-index: 100;
+    border-bottom: 2px solid #dbe1eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#data-container td {
+    color: #1f1f1f;
+}
+
+.status-badge {
+    display: inline-block;
+    min-width: 104px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.status-approved {
+    background-color: #d6f5df;
+    color: #0f5132;
+    border-color: #98dfb0;
+}
+
+.status-pending {
+    background-color: #fff2c2;
+    color: #725200;
+    border-color: #f1d57a;
+}
+
+.status-rejected {
+    background-color: #ffd6dc;
+    color: #842029;
+    border-color: #f7a2ae;
+}
+
+.status-default {
+    background-color: #e8edf4;
+    color: #3d4a5f;
+    border-color: #cfd8e4;
+}
+
+table {
+    width: 300px;
+}
+
+td,
+th {
+    overflow: hidden;
+}
+
+th {
+    color: #5c5a5a;
+}
+
+tr {
+    height: 70px;
+}
+
+td {
+    font-size: 18px;
+}
+
+#gwa {
+    font-size: 25px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+#studID {
+    font-size: 25px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+/* =====================================================
+   Status helpers and validation messages
+   Used across the admin application views
+   Eldrei Changes: added .error-text, .pending, .approved, .declined classes for consistent styling of status indicators and error messages across the application
+   ===================================================== */
+
+#applyBtn:disabled {
+    cursor: not-allowed;
+    background-color: gray;
+}
+
+.error-text {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    font-size: 18px;
+}
+
+.pending {
+    background-color: #ffbd59;
+}
+
+.approved {
+    background-color: rgb(0, 128, 0);
+}
+
+.declined {
+    background-color: rgb(255, 0, 0);
+}
+
+/* =====================================================
+   Admin action buttons and modal details panel
+   Used by adminManageApplications.php and viewApplication.php
+   ===================================================== */
+
+.adminTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.adminTable th,
+td {
+    padding: 20px;
+}
+
+.btn {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.view {
+    background-color: #1982c4;
+}
+
+.update {
+    background-color: #f2b600;
+}
+
+.delete {
+    background-color: #cd001a;
+}
+
+#bg-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.542);
+    display: none;
+    z-index: 1090;
+
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    background-color: #ffffff;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1091;
+
+}
+
+#modal-content {
+    width: 100%;
+}
+
+/* =====================================================
+   Edit application modal (admin)
+   Styled to align with logout modal visual language
+   ===================================================== */
+.app-modal-card {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.app-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.app-modal-header h2 {
+    margin: 0;
+    color: #201e1e;
+    text-align: left;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+.modal-close-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ececec;
+    color: #383838;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: #d8d8d8;
+}
+
+.app-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.app-field-span-2 {
+    grid-column: span 2;
+}
+
+.app-field {
+    background-color: #f8f8f8;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.app-label {
+    font-size: 12px;
+    color: #6a6a6a;
+    margin: 0;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+.app-value {
+    font-size: 14px;
+    color: #1f1f1f;
+}
+
+.modal-actions {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #ececec;
+}
+
+.app-modal-actions {
+    text-align: left;
+    padding-top: 8px;
+}
+
+.app-modal-quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.app-btn-approve,
+.app-btn-reject {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.app-btn-approve {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.app-btn-approve:hover {
+    background-color: #218838;
+}
+
+.app-btn-reject {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.app-btn-reject:hover {
+    background-color: #c82333;
+}
+
+.app-btn-approve:disabled,
+.app-btn-reject:disabled {
+    background-color: #9fa7b3;
+    color: #eef1f5;
+    cursor: no-drop;
+    box-shadow: none;
+    transform: none;
+    transition: none;
+    opacity: 0.92;
+}
+
+.app-btn-approve:disabled:hover,
+.app-btn-reject:disabled:hover {
+    background-color: #9fa7b3;
+}
+
+.app-btn-disabled {
+    background-color: #9fa7b3 !important;
+    color: #eef1f5 !important;
+    cursor: no-drop !important;
+}
+
+@media (max-width: 640px) {
+    .app-modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .app-field-span-2 {
+        grid-column: span 1;
+    }
+}
+
+/* =====================================================
+   Logout confirmation modal
+   Shared by admin dashboard and manage applications
+   ===================================================== */
+#logout-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1100;
+}
+
+#logout-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1101;
+    width: 92%;
+    max-width: 420px;
+}
+
+#logout-modal-title {
+    font-size: 20px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    color: #8f5405;
+    margin-bottom: 10px;
+}
+
+.logout-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.logout-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #201e1e;
+    text-align: left;
+}
+
+.logout-card p {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #3d3d3d;
+    font-size: 14px;
+}
+
+#confirmLogoutBtn {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #8f5405;
+    color: #ffffff;
+    padding: 11px 14px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirmLogoutBtn:hover {
+    background-color: #a86409;
+}
+
+#cancelLogoutBtn {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #d5d5d5;
+    color: #2f2f2f;
+    padding: 10px 14px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#cancelLogoutBtn:hover {
+    background-color: #c5c5c5;
+}
+
+/* =====================================================
+   Admin add-application page
+   Used by adminAddApplication.php
+   ===================================================== */
+#admin-add-wrapper {
+    width: 100%;
+    margin-top: 90px;
+}
+
+#admin-add-header {
+    margin-bottom: 16px;
+}
+
+#admin-add-header h1 {
+    margin: 0;
+    color: #1f1f1f;
+}
+
+#admin-add-header p {
+    margin-top: 8px;
+    margin-bottom: 0;
+    color: #5b6677;
+}
+
+.admin-add-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #dbe1eb;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    padding: 50px 40px 50px 40px;
+    margin-top: 50px;
+    width: calc(100% - 600px);
+}
+
+.admin-add-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.admin-add-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-add-span-2 {
+    grid-column: span 2;
+}
+
+.admin-add-field label {
+    margin-left: 0;
+    color: #566075;
+    font-size: 12px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+.admin-add-field select,
+.admin-add-readonly {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #d4dbe7;
+    border-radius: 9px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #1f1f1f;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.admin-add-field select:focus {
+    border-color: #8f5405;
+    box-shadow: 0 0 0 3px rgba(143, 84, 5, 0.13);
+    outline: none;
+}
+
+.admin-add-readonly {
+    background-color: #f7f9fc;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+.eligibility-indicator {
+    border-radius: 10px;
+    border: 1px solid transparent;
+    padding: 12px;
+    font-size: 14px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+.neutral-state {
+    color: #51607a;
+    background-color: #eef3fb;
+    border-color: #dbe5f3;
+}
+
+.eligible-state {
+    color: #0f5132;
+    background-color: #dcffe8;
+    border-color: #8cffb0;
+}
+
+.ineligible-state {
+    color: #842029;
+    background-color: #ffe4e8;
+    border-color: #ff9fb0;
+}
+
+.admin-add-actions {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#confirmApplicationBtn,
+#discardApplicationBtn {
+    border: none;
+    border-radius: 9px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirmApplicationBtn {
+    background-color: #8f5405;
+    color: #ffffff;
+}
+
+#confirmApplicationBtn:hover {
+    background-color: #a86409;
+}
+
+#confirmApplicationBtn:disabled {
+    background-color: #b9bcc4;
+    cursor: not-allowed;
+}
+
+#discardApplicationBtn {
+    background-color: #d8dee9;
+    color: #22314b;
+}
+
+#discardApplicationBtn:hover {
+    background-color: #c8d0df;
+}
+
+.admin-add-note {
+    margin-top: 14px;
+    margin-bottom: 0;
+    color: #59657b;
+    font-size: 13px;
+}
+
+#admin-info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1200;
+}
+
+#admin-info-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92%;
+    max-width: 430px;
+    display: none;
+    z-index: 1201;
+}
+
+.admin-info-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    padding: 20px;
+}
+
+.admin-info-card h2 {
+    color: #8f5405;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.admin-info-card p {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #3a4254;
+}
+
+#adminInfoOkayBtn {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #8f5405;
+    color: #ffffff;
+    padding: 11px 14px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#adminInfoOkayBtn:hover {
+    background-color: #a86409;
+}
+
+@media (max-width: 860px) {
+    .admin-add-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-add-span-2 {
+        grid-column: span 1;
+    }
+}
+
+/* =====================================================
+   Student application layout blocks
+   Shared by stud_Application.php and stud_ApplicationForm.php
+   ===================================================== */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 400px;
+    padding-bottom: 0px;
+}
+
+.left,
+.right {
+    background-color: #004aad;
+    width: 500px;
+    height: 500px;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+#benefits li {
+    font-size: 20px;
+}
+
+#scholarshipLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.right form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.right form input {
+    width: 450px;
+}
+
+#genderInput {
+    width: 100px;
+}
+
+#gwaInput {
+    width: 100px;
+}
+
+#gender_gwa {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.gender_gwaContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-left: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+#applyBtn {
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 465px;
+    font-size: 25px;
+    color: white;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+}
+
+input:disabled {
+    background-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.left {
+    color: white;
+}
+
+/* =====================================================
+   Student/legacy compatibility rules from Student-side version of style.css
+   Retained to keep student pages working while using one stylesheet
+   ===================================================== */
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #004aad;
+    border-radius: 15px;
+    margin-top: 110px;
+    margin-left: 35%;
+    padding: 10px;
+    width: 400px;
+}
+
+.center label {
+    display: flex;
+    align-items: flex-start;
+}
+
+.center button {
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+.center h1,
+.center li,
+.center h3 {
+    color: white;
+}
+
+#firstApply {
+    margin-top: 10px;
+    margin-left: 25%;
+    width: 500px;
+    height: 560px;
+}
+
+#view_gender_gwa {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.view_gender_gwaContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+#view_gender_gwaContainer input {
+    display: flex;
+    margin-left: 200px;
+}
+
+#apply_prevBtn {
+    margin-left: 70px;
+    width: 250px;
+    font-size: 20px;
+}
+
+/* #addAppliBtn {
+    border: none;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #05408f;
+    color: white;
+} */
+
+/* Legacy student logout button style; avoids overriding admin .nav-logout-btn */
+#nav-horizontal #logoutBtn:not(.nav-logout-btn) {
+    background-color: #8f5405;
+    color: white;
+    border: none;
+    font-family: 'PoppinsBold', Arial, Helvetica, sans-serif;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#nav-horizontal #logoutBtn:not(.nav-logout-btn):hover {
+    background-color: #a86409;
+    cursor: pointer;
+}
+
+/* Class-based modal fallbacks used by older/student markup */
+.bg-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.543);
+    display: none;
+    z-index: 999;
+}
+
+.modal {
+    border-radius: 10px;
+    padding: 10px;
+    display: none;
+}
+
+#errorModal,
+#passwordError {
+    border: 1px solid red;
+    background-color: rgba(255, 63, 63, 0.404);
+}
+
+#errorModal .modal-content p,
+#passwordError {
+    margin: 1px;
+    font-size: 15px;
+    color: rgb(255, 90, 61);
+}
+
+#passwordError {
+    padding: 10px;
+    display: none;
+    margin: 10px;
+}
+
+#successModal {
+    background-color: rgb(50, 71, 255);
+    position: fixed;
+    width: 430px;
+    max-width: calc(100vw - 32px);
+    border-radius: 10px;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 0;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    text-align: center;
+}
+
+.requirements {
+    display: flex;
+    align-items: flex-start;
+    position: fixed;
+    background-color: #05408f;
+    margin: 0;
+}
+
+/* delete application admin side */
+
+#deleteApplicationBtn {
+    /* border-color: red; */
+    border: none;
+    background: none;
+    cursor: pointer;
+    /* padding: 10px; */
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-buttons button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-modal-message {
+    margin: 12px 0;
+    font-size: 17px;
+    color: #1f1f1f;
+}
+
+#filterApplicationBtn {
+    background-color: white;
+    border: 1px solid #d4d9e2;
+    border-radius: 10px;  
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.filter-status-options {
+    display: flex;
+    gap: 20px; 
+    align-items: center;
+}
+
+.filter-status-options label {
+    font-size: 14px;
+    color: #1f1f1f;
+    cursor: pointer;
+}
+
+#filterStatus{
+    color: #1f1f1f;
+}
